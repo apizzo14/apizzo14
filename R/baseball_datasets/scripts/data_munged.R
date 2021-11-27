@@ -1,0 +1,57 @@
+library(dplyr)
+library(ggplot2)
+
+get_pitching <- function()
+{
+  p <- read.csv("../data/Pitching.csv", header = T, stringsAsFactors = F)
+  return(p)
+}
+
+get_salaries <- function()
+{
+  s <- read.csv("../data/Salaries.csv", header = T, stringsAsFactors = F)
+  return(s)
+}
+
+get_inflation <- function()
+{
+  i <- read.csv("../data/inflation.csv", header = T, stringsAsFactors = F)
+  return(i)
+}
+
+p <- get_pitching()
+s <- get_salaries()
+inf <- get_inflation()
+inf <- as.list(inf)
+#i <- enframe(i)
+
+make_df <- function(p, s, inf)
+{
+  join_df <- dplyr::inner_join(p, s, by=c("playerID", "yearID"))
+  join_df <- dplyr::filter(join_df, yearID < 2015 && yearID > 1984)
+  join_df <- dplyr::select(join_df, yearID, playerID, salary, ERA)
+  mapYear <- unique(join_df$yearID)
+  map_salary <- Map(function(year){
+    year_df <- dplyr::filter(join_df, yearID == year)
+    multiplier <- inf$inflation2015[inf$year == year]
+    era <- sort(year_df$ERA)
+    if (year == 2015)
+    {
+      multiplier = 1
+    }
+    for (i in 1:length(year_df$ERA))
+    {
+      year_df$salary[i] <- year_df$salary[i]*multiplier
+      ndx <- grep(year_df$ERA[i], era)
+      ndx <- ndx[1]
+      era_perc <- ndx/length(era)
+      year_df$ERA[i] <- era_perc
+    }
+    return(year_df)
+  }, mapYear)
+  return(map_salary)
+}
+
+df_list <- make_df(p, s, inf)
+df <- do.call(rbind, df_list)
+names(df) <-c("year", "pitcher", "salary.adjusted", "ERA.adjusted")

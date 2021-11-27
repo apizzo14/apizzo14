@@ -1,3 +1,6 @@
+#This program is a choose your own adventure game
+
+
 #adventure story
 import time #delays will be added for dramatic effect
 

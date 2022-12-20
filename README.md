@@ -1,7 +1,7 @@
 - 👋 Hi, I’m Aidan Pizzo (@apizzo14). I am currently at Senior at Georgetown University studying Math, Computer Science, and Psychology.
 - 👀 I’m interested in Data Science and Machine Learning, especially how the two can influence and enhance public policy.
 - 🌱 I’m currently learning SQL. I've completed coursework in Python, C++, R, Math Methods for Computer Science, Number Theory & Cryptography, and more.
-- 💼 I’m currently working with the Massive Data Institute at Georgetown’s McCourt School of Public Policy studying misinformation during the COVID-19 pandemic, as well as creating and analyzing Twitter datasets relevant to the myth that 5G spreads COVID-19. Our projects are coded in python.
+- 💼 I’m currently working with the Massive Data Institute at Georgetown’s McCourt School of Public Policy studying forced migration. We are attempting to collect, clean, and construct datasets to model internal and external movement in global hotspots (Ukraine, Venezuela, and more).
 - 📫 You can reach me at app59@georgetown.edu!
 
 <!---

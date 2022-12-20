@@ -1,0 +1,1 @@
+This projet contains implementation for a Splay Tree, or a binary search tree that rebalances through rotations during specific operations. The main function will read an input file containing integers to be inserted into the tree, values to be searched in the tree, and values to be deleted.
